@@ -14,6 +14,8 @@
                         @endif
                     </a>
                 </th>
+
+
                 <th scope="col"><a
                         href="{{ route('admin.projects.index') }}?sort=title&order=@if ($sort == 'title' && $order != 'DESC') DESC @else ASC @endif">Title
                         @if ($sort == 'title')
@@ -21,6 +23,10 @@
                         @endif
                     </a>
                 </th>
+
+                <th scope="col" class="text-center">Type</th>
+
+
                 <th scope="col"><a
                         href="{{ route('admin.projects.index') }}?sort=languages&order=@if ($sort == 'languages' && $order != 'DESC') DESC @else ASC @endif">Languages
                         @if ($sort == 'languages')
@@ -52,6 +58,8 @@
                 <tr>
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
+                    <td class="text-center"><span class="badge"
+                            style="background-color:{{ $project->type?->color }} ">{{ $project->type?->name }}</span></td>
                     <td>{{ $project->languages }}</td>
                     <td>{{ $project->created_at }}</td>
                     <td>{{ $project->updated_at }}</td>

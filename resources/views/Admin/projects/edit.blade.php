@@ -49,6 +49,22 @@
                             </select>
                         </div>
 
+                        <div class="col-5">
+                            <label for="type_id" class="form-label"><strong>Type</strong></label>
+                            <select class="form-select @error('type_id') is-invalid @enderror"
+                                aria-label="Default select example" name="type_id" id="type_id">
+                                <option value="">No Type</option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('type_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
                         <div class="col-10">
                             <label for="description" class="form-label"><strong>Description</strong></label>
                             <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"

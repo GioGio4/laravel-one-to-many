@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Expr\New_;
 
 class ProjectController extends Controller
 {
@@ -32,7 +34,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $project = new Project();
+        $types = Type::all();
+
+        return view('admin.projects.create', compact('project', 'types'));
     }
 
     /**
@@ -79,7 +84,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -131,7 +138,8 @@ class ProjectController extends Controller
                 'pic' => 'nullable|image|mimes:png,jpg,jpeg',
                 'description' => 'required|string',
                 'languages' => 'required',
-                'link' => 'nullable|string'
+                'link' => 'nullable|string',
+                'type_id' => 'nullable|exists:types,id'
             ],
             [
                 'title.required' => 'il campo è richiesto',
@@ -145,6 +153,7 @@ class ProjectController extends Controller
 
                 'title.max' => 'il campo deve avere massimo 100 caratteri',
                 'pic.mimes' => 'Le estensioni accettate sono:png,jpg,jpeg',
+                'type_id.exists' => 'L\'id della categoria non è valido',
             ]
         )->validate();
         return $validator;
