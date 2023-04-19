@@ -35,9 +35,11 @@
                         <div class="col-2">
                             <label for="languages" class="form-label"><strong>Languages</strong></label>
                             <select class="form-select" aria-label="Default select example" name="languages" id="languages">
-                                <option value="php"{{ old('languages') == 'php' ? 'selected' : '' }}>PHP</option>
-                                <option value="html"{{ old('languages') == 'html' ? 'selected' : '' }}>HTML</option>
-                                <option value="javascript"{{ old('languages') == 'javascript' ? 'selected' : '' }}>
+                                <option value="php" class="{{ old('languages') == 'php' ? 'selected' : '' }}">PHP
+                                </option>
+                                <option value="html" class=" {{ old('languages') == 'html' ? 'selected' : '' }}">HTML
+                                </option>
+                                <option value="javascript"class="{{ old('languages') == 'javascript' ? 'selected' : '' }}">
                                     Javascript
                                 </option>
                             </select>
@@ -70,8 +72,10 @@
                             @enderror
                         </div>
 
-                        <div class="col-2">
-                            <img src="{{ $project->getImageUri() }}" alt="project-image" class="form-box-img">
+                        <div class="col-2 text-center">
+                            <label for="current-image" class="form-label"><strong>Current Image</strong></label>
+                            <img src="{{ $project->getImageUri() }}" name="current-image" alt="project-image"
+                                class="form-box-img ">
                         </div>
 
                         <div class="col-12">

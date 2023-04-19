@@ -38,16 +38,16 @@
                         <div class="col-2">
                             <label for="languages" class="form-label"><strong>Languages</strong></label>
                             <select class="form-select" aria-label="Default select example" name="languages" id="languages">
-
-                                <option value="php"@if (old('languages') == 'php') {{ 'selected' }} @endif>PHP
+                                <option @selected($project->languages == 'PHP') value="php">PHP
                                 </option>
-                                <option value="html"@if (old('languages') == 'html') {{ 'selected' }} @endif>HTML
+                                <option value="html" @selected($project->languages == 'HTML')>HTML
                                 </option>
-                                <option value="javascript"@if (old('languages') == 'javascript') {{ 'selected' }} @endif>
+                                <option value="javascript"@selected($project->languages == 'Javascript')>
                                     Javascript
                                 </option>
                             </select>
                         </div>
+
 
                         <div class="col-5">
                             <label for="type_id" class="form-label"><strong>Type</strong></label>
@@ -55,7 +55,8 @@
                                 aria-label="Default select example" name="type_id" id="type_id">
                                 <option value="">No Type</option>
                                 @foreach ($types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    <option @selected($type->id == $project->type_id) value="{{ $type->id }}">{{ $type->name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('type_id')
@@ -77,8 +78,10 @@
                             @enderror
                         </div>
 
-                        <div class="col-2">
-                            <img src="{{ $project->getImageUri() }}" alt="project-image" class="form-box-img ">
+                        <div class="col-2 text-center">
+                            <label for="current-image" class="form-label"><strong>Current Image</strong></label>
+                            <img src="{{ $project->getImageUri() }}" name="current-image" alt="project-image"
+                                class="form-box-img ">
                         </div>
 
                         <div class="col-12">
