@@ -9,13 +9,14 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        "title",
-        "languages",
-        "pic",
-        "description",
-        "link"
-    ];
+    protected $fillable = ["title", "languages", "pic", "description", "link"];
+
+    //* Relazione
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 
     public function getImageUri()
     {

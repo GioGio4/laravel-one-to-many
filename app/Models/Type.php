@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
+
+    // Relazione
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
