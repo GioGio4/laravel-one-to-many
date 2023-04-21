@@ -27,6 +27,7 @@ class ProjectSeeder extends Seeder
             $project->description = $faker->paragraph(20);
             $project->languages = $faker->randomElement(['PHP', 'HTML', 'Javascript']);
             $project->link = $faker->url();
+            // $project->type_id = $faker->numberBetween(1, 5);
             $project->save();
         }
     }
